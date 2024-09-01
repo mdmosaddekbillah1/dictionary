@@ -1,0 +1,403 @@
+{\rtf1\ansi\ansicpg1254\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset77 KohinoorBangla-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25100\viewh14280\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="tr">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>K Dictionary - Turkish-Bengali</title>\
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />\
+    <meta name="description" content="A Turkish-Bengali dictionary example for words starting with K." />\
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />\
+    <style>\
+        body \{\
+            font-family: Arial, sans-serif;\
+            background-color: #f4f4f4;\
+            margin: 0;\
+            padding: 20px;\
+        \}\
+        .container \{\
+            max-width: 800px;\
+            margin: 0 auto;\
+            background: #fff;\
+            padding: 20px;\
+            border-radius: 8px;\
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\
+        \}\
+        h1 \{\
+            text-align: center;\
+            color: #007BFF;\
+        \}\
+        input \{\
+            width: 100%;\
+            padding: 10px;\
+            margin-bottom: 20px;\
+            font-size: 16px;\
+            border: 1px solid #ccc;\
+            border-radius: 4px;\
+        \}\
+        ul \{\
+            list-style: none;\
+            padding: 0;\
+        \}\
+        li \{\
+            background: #f9f9f9;\
+            margin: 5px 0;\
+            padding: 10px;\
+            border-radius: 4px;\
+            border: 1px solid #ddd;\
+        \}\
+        li strong \{\
+            display: block;\
+            font-size: 18px;\
+            color: #007BFF;\
+            margin-bottom: 5px;\
+        \}\
+        .btn-group \{\
+            margin-bottom: 20px;\
+            display: flex;\
+            justify-content: center;\
+        \}\
+        .btn-group .btn \{\
+            margin: 0 5px;\
+        \}\
+    </style>\
+</head>\
+<body>\
+    <div class="container">\
+        <h1>Turkish-Bengali Dictionary - K Words</h1>\
+        <div class="btn-group">\
+            <button class="btn btn-default" onclick="iA('\'e7')">\'e7</button>\
+            <button class="btn btn-default" onclick="iA('\uc0\u305 ')">\u305 </button>\
+            <button class="btn btn-default" onclick="iA('\uc0\u287 ')">\u287 </button>\
+            <button class="btn btn-default" onclick="iA('\'f6')">\'f6</button>\
+            <button class="btn btn-default" onclick="iA('\uc0\u351 ')">\u351 </button>\
+            <button class="btn btn-default" onclick="iA('\'fc')">\'fc</button>\
+            <button class="btn btn-default" onclick="iA('\'e2')">\'e2</button>\
+            <button class="btn btn-default all-keyboard" onclick="$('#keyboard').toggle();">Toggle Keyboard</button>\
+        </div>\
+        <input type="text" id="search" placeholder="Search for a word..." onkeyup="filterWords()">\
+        <ul id="dictionary"></ul>\
+    </div>\
+    <script>\
+        const dictionary = [\
+            \{turkish: "kaba", type: "sifat", bengali: "
+\f1 \uc0\u2453 \u2453 \u2453 \u2486 
+\f0 ,
+\f1 \uc0\u2437 \u2478 \u2494 \u2480 \u2509 \u2460 \u2453 \u2468 
+\f0 ,
+\f1 \uc0\u2437 \u2478 \u2499 \u2488 \u2467 
+\f0 "\},\
+            \{turkish: "kabaca", type: "zarf", bengali: "
+\f1 \uc0\u2478 \u2478 \u2494 \u2463 \u2494 \u2478 \u2497 \u2463 \u2495 
+\f0 ,
+\f1 \uc0\u2480 \u2509 \u2495 \u2486 \u2499 \u2457 \u2509 \u2454 \u2482 \u2477 \u2494 \u2476 \u2495 
+\f0 "\},\
+            \{turkish: "kabaday\uc0\u305 ", type: "isim", bengali: "
+\f1 \uc0\u2441 \u2458 \u2509 \u2459 \u2499 \u2457 \u2509 \u2454 \u2482 
+\f0 ,
+\f1 \uc0\u2455 \u2497 \u2472 \u2509 \u2465 \u2494 
+\f0 "\},\
+            \{turkish: "kabahat", type: "isim", bengali: "
+\f1 \uc0\u2478 
+\f0  
+\f1 \uc0\u2494 \u2487 
+\f0 "\},\
+            \{turkish: "kabak", type: "isim", bengali: "
+\f1 \uc0\u2482 \u2494 \u2441 
+\f0 ,
+\f1 \uc0\u2453 \u2497 \u2478 \u2480 \u2494 
+\f0 "\},\
+            \{turkish: "kabakulak", type: "t\uc0\u305 p.", bengali: "
+\f1 \uc0\u2455 \u2472 \u2509 \u2465 \u2478 \u2494 \u2482 \u2494 
+\f0  
+\f1 \uc0\u2478 \u2480 \u2494 \u2455 
+\f0 "\},\
+            \{turkish: "kabala\uc0\u351 mak", type: "fiil", bengali: "
+\f1 \uc0\u2437 \u2478 \u2494 \u2480 \u2509 \u2460 \u2453 \u2468 
+\f0  
+\f1 \uc0\u2489 \u2451 \u2527 \u2494 
+\f0 "\},\
+            \{turkish: "kabara", type: "isim", bengali: "
+\f1 \uc0\u2463 \u2474 \u2451 \u2527 \u2494 \u2482 \u2494 
+\f0  
+\f1 \uc0\u2478 \u2474 \u2476 \u2480 \u2453 
+\f0 "\},\
+            \{turkish: "kabarc\uc0\u305 k", type: "isim", bengali: "
+\f1 \uc0\u2478 
+\f0  
+\f1 \uc0\u2494 \u2488 \u2509 \u2453 \u2494 
+\f0 ,
+\f1 \uc0\u2488 \u2494 \u2478 \u2494 \u2472 \u2509 \u2479 
+\f0  
+\f1 \uc0\u2497 \u2476 \u2482 
+\f0  
+\f1 \uc0\u2441 \u2464 \u2494 
+\f0 "\},\
+            \{turkish: "kabar\uc0\u305 k", type: "sifat", bengali: "
+\f1 \uc0\u2488 \u2509 \u2475 \u2496 \u2468 
+\f0 ,
+\f1 \uc0\u2455 \u2494 \u2482 \u2477 \u2480 \u2494 
+\f0 "\},\
+            \{turkish: "kabartma", type: "isim", bengali: "
+\f1 \uc0\u2441 \u2472 \u2509 \u2472 \u2496 \u2468 
+\f0 ,
+\f1 \uc0\u2441 
+\f0  
+\f1 \uc0\u2479 \u2468 
+\f0 ,
+\f1 \uc0\u2441 \u2474 \u2486 \u2478 
+\f0 "\},\
+            \{turkish: "kabarmak", type: "fiil", bengali: "
+\f1 \uc0\u2488 \u2509 \u2475 \u2496 \u2468 
+\f0  
+\f1 \uc0\u2489 \u2451 \u2527 \u2494 
+\f0 ,
+\f1 \uc0\u2474 \u2509 \u2480 \u2488 \u2494 \u2480 \u2509 \u2480 \u2468 
+\f0  
+\f1 \uc0\u2489 \u2451 \u2527 \u2494 
+\f0 "\},\
+            \{turkish: "kabart\uc0\u305 ", type: "isim", bengali: "
+\f1 \uc0\u2488 \u2509 \u2475 \u2496 \u2480 \u2509 \u2468 
+\f0  
+\f1 \uc0\u2437 \u2434 \u2486 
+\f0 "\},\
+            \{turkish: "kabataslak", type: "sifat", bengali: "
+\f1 \uc0\u2478 \u2478 \u2494 \u2463 \u2494 
+\f0  
+\f1 \uc0\u2454 \u2488 \u2524 \u2494 
+\f0 ,
+\f1 \uc0\u2480 \u2498 \u2474 \u2476 \u2480 \u2454 \u2494 
+\f0 "\},\
+            \{turkish: "kabe", type: "din. bl.", bengali: "
+\f1 \uc0\u2453 \u2494 \u2476 \u2494 
+\f0 "\},\
+            \{turkish: "kab\uc0\u305 z", type: "isim", bengali: "
+\f1 \uc0\u2478 \u2453 \u2494 \u2487 \u2509 \u2464 \u2495 \u2470 \u2509 \u2471 \u2468 \u2494 
+\f0 "\},\
+            \{turkish: "kabil", type: "sifat", bengali: "
+\f1 \uc0\u2488 \u2494 \u2471 \u2509 \u2479 
+\f0 ,
+\f1 \uc0\u2453 \u2480 \u2494 
+\f0  
+\f1 \uc0\u2488 \u2494 \u2471 \u2509 \u2479 
+\f0  
+\f1 \uc0\u2447 \u2478 \u2472 
+\f0 "\},\
+            \{turkish: "kabile", type: "sosyoloji", bengali: "
+\f1 \uc0\u2441 \u2474 \u2460 \u2494 \u2480 \u2509 \u2468 
+\f0 ,
+\f1 \uc0\u2478 \u2455 \u2494 \u2487 \u2509 \u2464 \u2496 
+\f0 "\},\
+            \{turkish: "kabotaj", type: "ticaret", bengali: "
+\f1 \uc0\u2441 \u2474 \u2453 \u2498 \u2482 
+\f0  
+\f1 \uc0\u2495 \u2494 \u2480 \u2509 \u2472 \u2509 \u2460 \u2479 
+\f0 "\},\
+            \{turkish: "kabristan", type: "din. bl.", bengali: "
+\f1 \uc0\u2453 \u2495 \u2480 \u2488 \u2509 \u2469 \u2494 \u2472 
+\f0 "\},\
+            \{turkish: "kabuk", type: "isim", bengali: "
+\f1 \uc0\u2478 \u2454 \u2494 \u2482 
+\f0 ,
+\f1 \uc0\u2495 \u2494 \u2453 \u2482 
+\f0 ,
+\f1 \uc0\u2478 
+\f0  
+\f1 \uc0\u2494 \u2482 \u2494 
+\f0 "\},\
+            \{turkish: "kabuklanmak", type: "fiil", bengali: "
+\f1 \uc0\u2495 \u2494 \u2453 \u2482 
+\f0  
+\f1 \uc0\u2441 \u2464 \u2494 
+\f0 ,
+\f1 \uc0\u2478 \u2454 \u2494 \u2482 
+\f0  
+\f1 \uc0\u2460 \u2472 \u2509 \u2478 \u2494 \u2476 \u2472 \u2509 \u2494 
+\f0 "\},\
+            \{turkish: "kabul", type: "isim", bengali: "
+\f1 \uc0\u2488 \u2509 \u2476 \u2496 \u2453 \u2499 \u2480 \u2509 \u2468 
+\f0 "\},\
+            \{turkish: "kabullenmek", type: "fiil", bengali: "
+\f1 \uc0\u2455 \u2499 \u2489 
+\f0  
+\f1 \uc0\u2467 
+\f0  
+\f1 \uc0\u2453 \u2480 \u2494 
+\f0 "\},\
+            \{turkish: "kaburga", type: "anatomi", bengali: "
+\f1 \uc0\u2474 \u2494 \u2494 \u2433 \u2460 \u2480 
+\f0 "\},\
+            \{turkish: "kabus", type: "isim", bengali: "
+\f1 \uc0\u2470 \u2497 
+\f0 : 
+\f1 \uc0\u2488 \u2509 \u2476 \u2474 \u2509 \u2472 
+\f0 "\},\
+            \{turkish: "kabza", type: "isim", bengali: "
+\f1 \uc0\u2478 
+\f0  
+\f1 \uc0\u2494 \u2480 \u2494 \u2480 
+\f0  
+\f1 \uc0\u2489 \u2494 \u2468 \u2482 
+\f0 ,
+\f1 \uc0\u2453 \u2476 \u2509 \u2460 \u2494 
+\f0 "\},\
+            \{turkish: "kabz\uc0\u305 mal", type: "isim", bengali: "
+\f1 \uc0\u2478 \u2471 \u2509 \u2479 \u2488 \u2509 \u2476 \u2468 \u2509 \u2476 \u2476 \u2477 \u2494 \u2455 \u2496 
+\f0 "\},\
+            \{turkish: "ka\'e7", type: "isim", bengali: "
+\f1 \uc0\u2453 \u2468 
+\f0 "\},\
+            \{turkish: "ka\'e7ak", type: "isim", bengali: "
+\f1 \uc0\u2474 \u2482 \u2494 \u2468 \u2453 
+\f0 ,
+\f1 \uc0\u2474 \u2494 \u2458 \u2494 \u2480 
+\f0 "\},\
+            \{turkish: "ka\'e7ak\'e7\uc0\u305 ", type: "isim", bengali: "
+\f1 \uc0\u2478 \u2458 \u2494 \u2480 \u2494 \u2453 \u2494 \u2480 \u2495 \u2494 \u2480 \u2509 \u2480 
+\f0 "\},\
+            \{turkish: "ka\'e7amak", type: "fiil", bengali: "
+\f1 \uc0\u2447 \u2524 \u2494 \u2476 \u2472 \u2509 \u2494 \u2480 
+\f0  
+\f1 \uc0\u2478 \u2453 \u2503 \u2519 \u2486 \u2482 
+\f0  
+\f1 \uc0\u2453 \u2480 \u2494 
+\f0 "\},\
+            \{turkish: "ka\'e7ar", type: "sifat", bengali: "
+\f1 \uc0\u2453 \u2468 \u2455 \u2497 \u2476 \u2482 \u2494 
+\f0  
+\f1 \uc0\u2453 \u2476 \u2480 
+\f0 , 
+\f1 \uc0\u2453 \u2468 \u2463 \u2495 
+\f0 "\},\
+            \{turkish: "ka\'e7\uc0\u305 n\u305 lmaz", type: "sifat", bengali: "
+\f1 \uc0\u2437 \u2480 \u2509 \u2472 \u2509 \u2495 \u2494 \u2480 \u2509 \u2453 
+\f0 "\},\
+            \{turkish: "ka\'e7\uc0\u305 nmak", type: "fiil", bengali: "
+\f1 \uc0\u2480 \u2509 \u2472 \u2495 \u2480 \u2468 
+\f0  
+\f1 \uc0\u2469 \u2494 \u2453 \u2494 
+\f0 "\},\
+            \{turkish: "ka\'e7\uc0\u305 rma", type: "isim", bengali: "
+\f1 \uc0\u2474 \u2494 \u2458 \u2494 \u2480 
+\f0 "\},\
+            \{turkish: "ka\'e7\uc0\u305 rmak", type: "fiil", bengali: "
+\f1 \uc0\u2489 \u2494 \u2439 \u2476 \u2460 \u2479 \u2453 
+\f0  
+\f1 \uc0\u2453 \u2480 \u2494 
+\f0 ,
+\f1 \uc0\u2477 \u2494 \u2455 \u2494 \u2476 \u2472 \u2509 \u2494 
+\f0 ,
+\f1 \uc0\u2480 \u2509 \u2472 \u2509 \u2476 \u2527 
+\f0  
+\f1 \uc0\u2474 \u2494 \u2480 \u2509 \u2482 \u2476 \u2527 
+\f0  
+\f1 \uc0\u2480 \u2509 \u2494 \u2451 \u2527 \u2494 
+\f0 "\},\
+            \{turkish: "ka\'e7\uc0\u305 \u351 mak", type: "fiil", bengali: "
+\f1 \uc0\u2437 \u2470 \u2499 \u2486 \u2479 
+\f0  
+\f1 \uc0\u2453 \u2480 \u2494 
+\f0 ,
+\f1 \uc0\u2474 \u2482 \u2494 \u2527 \u2472 \u2509 
+\f0  
+\f1 \uc0\u2453 \u2480 \u2494 
+\f0 "\},\
+            \{turkish: "ka\'e7k\uc0\u305 n", type: "isim", bengali: "
+\f1 \uc0\u2474 \u2482 \u2494 \u2468 \u2453 
+\f0 ,
+\f1 \uc0\u2458 \u2478 \u2509 \u2474 \u2463 
+\f0 ,
+\f1 \uc0\u2478 \u2480 \u2509 
+\f0  
+\f1 \uc0\u2453 \u2494 \u2460 
+\f0  
+\f1 \uc0\u2478 \u2469 \u2476 \u2453 
+\f0  
+\f1 \uc0\u2477 \u2494 \u2476 \u2455 
+\f0 "\},\
+            \{turkish: "ka\'e7l\uc0\u305 ", type: "sifat", bengali: "
+\f1 \uc0\u2453 \u2468 \u2468 \u2478 
+\f0 ,
+\f1 \uc0\u2453 \u2468 
+\f0 ,
+\f1 \uc0\u2453 \u2468 \u2463 \u2497 \u2453 \u2497 
+\f0 "\},\
+            \{turkish: "ka\'e7l\uc0\u305 k", type: "sifat", bengali: "
+\f1 \uc0\u2453 \u2468 \u2463 \u2497 \u2453 \u2497 
+\f0 ,
+\f1 \uc0\u2453 \u2468 
+\f0  
+\f1 \uc0\u2474 \u2480 \u2509 \u2480 \u2478 \u2494 \u2472 \u2509 
+\f0 "\},\
+            \{turkish: "ka\'e7ma", type: "isim", bengali: "
+\f1 \uc0\u2474 \u2482 \u2494 \u2527 \u2472 \u2509 
+\f0 "\},\
+            \{turkish: "ka\'e7mak", type: "fiil", bengali: "
+\f1 \uc0\u2474 \u2494 \u2482 \u2494 \u2476 \u2472 \u2509 \u2494 
+\f0 ,
+\f1 \uc0\u2474 \u2482 \u2494 \u2468 \u2472 \u2509 
+\f0  
+\f1 \uc0\u2453 \u2480 \u2494 
+\f0 "\},\
+            \{turkish: "kadana", type: "zooloji", bengali: "
+\f1 \uc0\u2495 \u2524 
+\f0  
+\f1 \uc0\u2474 \u2509 \u2480 \u2460 \u2494 \u2480 \u2509 \u2468 \u2480 
+\f0  
+\f1 \uc0\u2447 \u2453 \u2471 \u2509 \u2480 \u2476 \u2472 \u2509 \u2480 
+\f0  
+\f1 \uc0\u2478 
+\f0  
+\f1 \uc0\u2494 \u2480 \u2494 
+\f0 "\},\
+            \{turkish: "kadar", type: "edat", bengali: "
+\f1 \uc0\u2474 \u2480 \u2509 \u2453 \u2472 \u2509 \u2468 
+\f0 "\},\
+            \{turkish: "kadastro", type: "isim", bengali: "
+\f1 \uc0\u2468 \u2494 \u2480 \u2509 \u2482 \u2453 \u2494 \u2477 \u2497 \u2453 \u2509 \u2468 
+\f0 , 
+\f1 \uc0\u2468 
+\f0  
+\f1 \uc0\u2480 \u2509 \u2488 \u2482 \u2477 \u2497 \u2453 \u2509 \u2468 
+\f0 , 
+\f1 \uc0\u2474 \u2498 \u2495 \u2453 \u2494 \u2476 \u2503 
+\f0  
+\f1 \uc0\u2480 \u2509 \u2472 \u2509 \u2471 \u2509 \u2494 \u2453 \u2480 \u2509 \u2480 \u2468 
+\f0 "\},\
+            \{turkish: "kadavra", type: "isim", bengali: "
+\f1 \uc0\u2478 \u2499 \u2468 \u2476 
+\f0  
+\f1 \uc0\u2489 
+\f0 ,
+\f1 \uc0\u2482 \u2494 \u2486 
+\f0 "\}\
+        ];\
+\
+        function filterWords() \{\
+            const input = document.getElementById('search').value.toLowerCase();\
+            const filteredDictionary = dictionary.filter(entry => entry.turkish.toLowerCase().includes(input));\
+            displayWords(filteredDictionary);\
+        \}\
+\
+        function displayWords(words) \{\
+            const dictionaryElement = document.getElementById('dictionary');\
+            dictionaryElement.innerHTML = '';\
+            words.forEach(word => \{\
+                const listItem = document.createElement('li');\
+                listItem.innerHTML = `<strong>$\{word.turkish\} ($\{word.type\})</strong>$\{word.bengali\}`;\
+                dictionaryElement.appendChild(listItem);\
+            \});\
+        \}\
+\
+        // Display all words by default\
+        displayWords(dictionary);\
+    </script>\
+</body>\
+</html>\
+}
