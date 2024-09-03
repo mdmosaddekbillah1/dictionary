@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K Dictionary - Turkish-Bengali</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="description" content="A Turkish-Bengali dictionary example for words starting with K." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        li strong {
+            font-size: 18px;
+            color: #007BFF;
+        }
+        .btn-group {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .btn-group .btn {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Turkish-Bengali Dictionary - K Words</h1>
+        <div class="btn-group">
+            <button class="btn btn-default" onclick="iA('ç')">ç</button>
+            <button class="btn btn-default" onclick="iA('ı')">ı</button>
+            <button class="btn btn-default" onclick="iA('ğ')">ğ</button>
+            <button class="btn btn-default" onclick="iA('ö')">ö</button>
+            <button class="btn btn-default" onclick="iA('ş')">ş</button>
+            <button class="btn btn-default" onclick="iA('ü')">ü</button>
+            <button class="btn btn-default" onclick="iA('â')">â</button>
+            <button class="btn btn-default all-keyboard" onclick="$('#keyboard').toggle();">Toggle Keyboard</button>
+        </div>
+        <input type="text" id="search" placeholder="Search for a word..." onkeyup="filterWords()">
+        <ul id="dictionary"></ul>
+    </div>
+    <script>
+        const dictionary = [
+            {turkish: "kaba", type: "sifat", bengali: "কককশ,অমার্জকত,অমৃসণ", sentence: "Kaba davranmak kötü."},
+            {turkish: "kabaca", type: "zarf", bengali: "মমাটামুটি,র্িশৃঙ্খলভাবি", sentence: "Kabaca bir taslak."},
+            {turkish: "kabadayı", type: "isim", bengali: "উচ্ছৃঙ্খল,গুন্ডা", sentence: "O bir kabadayı."},
+            {turkish: "kabahat", type: "isim", bengali: "ম াষ", sentence: "Bu benim kabahat."},
+            {turkish: "kabak", type: "isim", bengali: "লাউ,কুমরা", sentence: "Kabak çorbası yap."},
+            {turkish: "kabakulak", type: "tıp.", bengali: "গন্ডমালা মরাগ", sentence: "Çocuk kabakulak oldu."},
+            {turkish: "kabalaşmak", type: "fiil", bengali: "অমার্জকত হওয়া", sentence: "O zaman kabalaştı."},
+            {turkish: "kabara", type: "isim", bengali: "টপওয়ালা মপবরক", sentence: "Kabara kapatıldı."},
+            {turkish: "kabarcık", type: "isim", bengali: "ম াস্কা,সামান্য ুবল উঠা", sentence: "Suda kabarcık var."},
+            {turkish: "kabarık", type: "sifat", bengali: "স্ফীত,গালভরা", sentence: "Kabarık elbise giymiş."},
+            {turkish: "kabartma", type: "isim", bengali: "উন্নীত,উ যত,উপশম", sentence: "Kabartma tozu ekle."},
+            {turkish: "kabarmak", type: "fiil", bengali: "স্ফীত হওয়া,প্রসার্রত হওয়া", sentence: "Hamur kabardı."},
+            {turkish: "kabartı", type: "isim", bengali: "স্ফীর্ত অংশ", sentence: "Duvarda kabartı var."},
+            {turkish: "kabataslak", type: "sifat", bengali: "মমাটা খসড়া,রূপবরখা", sentence: "Kabataslak bir plan."},
+            {turkish: "kabe", type: "din. bl.", bengali: "কাবা", sentence: "Kabe kutsaldır."},
+            {turkish: "kabız", type: "isim", bengali: "মকাষ্ঠিদ্ধতা", sentence: "Kabızlık sorunu yaşıyor."},
+            {turkish: "kabil", type: "sifat", bengali: "সাধ্য,করা সাধ্য এমন", sentence: "Her iş kabil değil."},
+            {turkish: "kabile", type: "sosyoloji", bengali: "উপজার্ত,মগাষ্ঠী", sentence: "Kabile reisi konuştu."},
+            {turkish: "kabotaj", type: "ticaret", bengali: "উপকূল িার্ন্জয", sentence: "Kabotaj bayramı kutlandı."},
+            {turkish: "kabristan", type: "din. bl.", bengali: "কিরস্থান", sentence: "Kabristan ziyareti yaptık."},
+            {turkish: "kabuk", type: "isim", bengali: "মখাল,িাকল,ম ালা", sentence: "Kabuk soyuldu."},
+            {turkish: "kabuklanmak", type: "fiil", bengali: "িাকল উঠা,মখাল জন্মাবন্া", sentence: "Yara kabuklandı."},
+            {turkish: "kabul", type: "isim", bengali: "স্বীকৃর্ত", sentence: "Kabul edilmek sevindirici."},
+            {turkish: "kabullenmek", type: "fiil", bengali: "গৃহ ণ করা", sentence: "Durumu kabullendik."},
+            {turkish: "kaburga", type: "anatomi", bengali: "পাাঁজর", sentence: "Kaburga kemiği kırıldı."},
+            {turkish: "kabus", type: "isim", bengali: "দু: স্বপ্ন", sentence: "Kabus gördüm dün gece."},
+            {turkish: "kabza", type: "isim", bengali: "ম ারার হাতল,কব্জা", sentence: "Silahın kabzası kırıldı."},
+            {turkish: "kabzımal", type: "isim", bengali: "মধ্যস্বত্ববভাগী", sentence: "Kabzımal mal aldı."},
+            {turkish: "kaç", type: "isim", bengali: "কত", sentence: "Kaç tane kaldı?"},
+            {turkish: "kaçak", type: "isim", bengali: "পলাতক,পাচার", sentence: "Kaçak içki bulundu."},
+            {turkish: "kaçakçı", type: "isim", bengali: "মচারাকারিার্র", sentence: "Kaçakçı yakalandı."},
+            {turkish: "kaçamak", type: "fiil", bengali: "এড়াবন্ার মকৌশল করা", sentence: "Kaçamak cevap verdi."},
+            {turkish: "kaçar", type: "sifat", bengali: "কতগুবলা কবর, কতটি", sentence: "Kaçar numara giymiş."},
+            {turkish: "kaçınılmaz", type: "sifat", bengali: "অর্ন্িার্ক", sentence: "Bu kaçınılmaz bir sonuç."},
+            {turkish: "kaçınmak", type: "fiil", bengali: "র্নিরত থাকা", sentence: "Sorundan kaçındı."},
+            {turkish: "kaçırma", type: "isim", bengali: "পাচার", sentence: "Film kaçırma sakın."},
+            {turkish: "kaçırmak", type: "fiil", bengali: "হাইবজযক করা,ভাগাবন্া,র্ন্বয় পার্লবয় র্াওয়া", sentence: "Otobüsü kaçırdık."},
+            {turkish: "kaçışmak", type: "fiil", bengali: "অদৃশয করা,পলায়ন্ করা", sentence: "İnsanlar kaçışıyor."},
+            {turkish: "kaçkın", type: "isim", bengali: "পলাতক,চম্পট,মর্ কাজ মথবক ভাবগ", sentence: "O bir kaçkın."},
+            {turkish: "kaçlı", type: "sifat", bengali: "কততম,কত,কতটুকু", sentence: "Bu kaçlı kalem?"},
+            {turkish: "kaçlık", type: "sifat", bengali: "কতটুকু,কত পর্রমান্", sentence: "Bu kaçlık bilet?"},
+            {turkish: "kaçma", type: "isim", bengali: "পলায়ন্", sentence: "Kaçma planı yaptı."},
+            {turkish: "kaçmak", type: "fiil", bengali: "পালাবন্া,পলাতন্ করা", sentence: "Hırsız kaçtı."},
+            {turkish: "kadana", type: "zooloji", bengali: "িড় প্রজার্তর একধ্রবন্র ম ারা", sentence: "Kadana balığı yakalandı."},
+            {turkish: "kadar", type: "edat", bengali: "পর্কন্ত", sentence: "Saat dört kadar bekle."},
+            {turkish: "kadastro", type: "isim", bengali: "তার্লকাভুক্ত, ত র্সলভুক্ত, পূিকাবে র্ন্ধ্াকর্রত", sentence: "Kadastro belgesi hazır."},
+            {turkish: "kadavra", type: "isim", bengali: "মৃতব হ,লাশ", sentence: "Kadavra üzerinde çalıştı."}
+        ];
+
+        function filterWords() {
+            const input = document.getElementById('search').value.toLowerCase();
+            const filteredDictionary = dictionary.filter(entry => entry.turkish.toLowerCase().includes(input));
+            displayWords(filteredDictionary);
+        }
+
+        function displayWords(words) {
+            const dictionaryElement = document.getElementById('dictionary');
+            dictionaryElement.innerHTML = '';
+            words.forEach(word => {
+                const listItem = document.createElement('li');
+                listItem.style.display = 'block'; // Display the list item only if it matches the search
+                listItem.innerHTML = `<strong>${word.turkish} (${word.type})</strong>: ${word.bengali} (${word.sentence} [${getBengaliTransliteration(word.sentence)}])`;
+                dictionaryElement.appendChild(listItem);
+            });
+        }
+
+        function getBengaliTransliteration(sentence) {
+            const transliterationMap = {
+                "kaba": "কাবা",
+                "davranmak": "দাভ্রানমাক",
+                "kötü": "কেতু",
+                "Kabaca": "কাবাচা",
+                "bir": "বির",
+                "taslak": "তাসলাক",
+                "O": "ও",
+                "bir": "বির",
+                "kabadayı": "কাবাদায়ী",
+                "Bu": "বু",
+                "benim": "বেনিম",
+                "kabahat": "কাবাহাত",
+                "Kabak": "কাবাক",
+                "çorbası": "চোরবাসী",
+                "yap": "ইয়াপ",
+                "Çocuk": "চোচুক",
+                "kabakulak": "কাবাকুলাক",
+                "oldu": "ওলদু",
+                "O": "ও",
+                "zaman": "জামান",
+                "kabalaştı": "কাবালাশতি",
+                "Kabara": "কাবারা",
+                "kapatıldı": "কাপাতিল্দি",
+                "Suda": "সুদা",
+                "kabarcık": "কাবারচিক",
+                "var": "ভার",
+                "Kabarık": "কাবারিক",
+                "elbise": "এলবিসে",
+                "giymiş": "গিইমিশ",
+                "Kabartma": "কাবারত্মা",
+                "tozu": "তোজু",
+                "ekle": "এক্লে",
+                "Hamur": "হামুর",
+                "kabardı": "কাবার্দি",
+                "Duvarda": "দুয়ার্দা",
+                "kabartı": "কাবার্তি",
+                "var": "ভার",
+                "Kabataslak": "কাবাতাসলাক",
+                "bir": "বির",
+                "plan": "প্লান",
+                "Kabe": "কাবে",
+                "kutsaldır": "কুত্সালদির",
+                "Kabızlık": "কাবিজলিক",
+                "sorunu": "সোরুনু",
+                "yaşıyor": "যাসিওর",
+                "Her": "হের",
+                "iş": "ইশ",
+                "kabil": "কাবিল",
+                "değil": "দেইল",
+                "Kabile": "কাবিলে",
+                "reisi": "রেইসি",
+                "konuştu": "কোনুশ্তু",
+                "Kabotaj": "কাবোতাজ",
+                "bayramı": "বায়রামি",
+                "kutlandı": "কুত্লান্দি",
+                "Kabristan": "কাব্রিসতান",
+                "ziyareti": "জিআরেতি",
+                "yaptık": "ইয়াপতিক",
+                "Kabuk": "কাবুক",
+                "soyuldu": "সইল্দু",
+                "Yara": "ইয়ারা",
+                "kabuklandı": "কাবুকলান্দি",
+                "Kabul": "কাবুল",
+                "edilmek": "এদিল্মেক",
+                "sevindirici": "সেভিন্দিরিচি",
+                "Durumu": "দুরুমু",
+                "kabullendik": "কাবুল্লেন্দিক",
+                "Kaburga": "কাবুর্গা",
+                "kemiği": "কেমিগি",
+                "kırıldı": "কিরিল্দি",
+                "Kabus": "কাবুস",
+                "gördüm": "গরদুম",
+                "dün": "দুন",
+                "gece": "গেসে",
+                "Silahın": "সিলাহিন",
+                "kabzası": "কাবজাসি",
+                "kırıldı": "কিরিল্দি",
+                "Kabzımal": "কাবজিমাল",
+                "mal": "মাল",
+                "aldı": "আল্দি",
+                "Kaç": "কাচ",
+                "tane": "তানে",
+                "kaldı": "কাল্দি",
+                "Kaçak": "কাচাক",
+                "içki": "ইচকি",
+                "bulundu": "বুলুন্দু",
+                "Kaçakçı": "কাচাকচি",
+                "yakalandı": "ইয়াকালান্দি",
+                "Kaçamak": "কাচামাক",
+                "cevap": "জেভাপ",
+                "verdi": "ভের্দি",
+                "Kaçar": "কাচার",
+                "numara": "নুমারা",
+                "giymiş": "গিইমিশ",
+                "Bu": "বু",
+                "kaçınılmaz": "কাচিনিল্মাজ",
+                "bir": "বির",
+                "sonuç": "সোনুছ",
+                "Sorundan": "সোরুন্দান",
+                "kaçındı": "কাচিন্দি",
+                "Film": "ফিল্ম",
+                "kaçırma": "কাচির্মা",
+                "sakın": "সাকিন",
+                "Otobüsü": "ওটোবুসু",
+                "kaçırdık": "কাচির্দিক",
+                "İnsanlar": "ইন্সান্লার",
+                "kaçışıyor": "কাচিসিওর",
+                "O": "ও",
+                "bir": "বির",
+                "kaçkın": "কাচ্কিন",
+                "Bu": "বু",
+                "kaçlı": "কাচলি",
+                "kalem": "কালেম",
+                "Bu": "বু",
+                "kaçlık": "কাচ্লিক",
+                "bilet": "বিলেত",
+                "Kaçma": "কাচ্মা",
+                "planı": "প্লানি",
+                "yaptı": "ইয়াপতি",
+                "Hırsız": "হির্সিজ",
+                "kaçtı": "কাচ্তি",
+                "Kadana": "কাদানা",
+                "balığı": "বালিগি",
+                "yakalandı": "ইয়াকালান্দি",
+                "Saat": "সাত",
+                "dört": "দোর্ত",
+                "kadar": "কাদার",
+                "bekle": "বেক্লে",
+                "Kadastro": "কাদাসত্রো",
+                "belgesi": "বেলগেসি",
+                "hazır": "হাজির",
+                "Kadavra": "কাদাভ্রা",
+                "üzerinde": "উজেরিন্দে",
+                "çalıştı": "চালিশতি"
+            };
+            return sentence.split(" ").map(word => transliterationMap[word] || word).join(" ");
+        }
+
+        // Initially hide the list until a search is performed
+        displayWords([]);
+    </script>
+</body>
+</html>
+
